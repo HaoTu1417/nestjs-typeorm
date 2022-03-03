@@ -9,7 +9,7 @@ export class AppService {
     @InjectRepository(User) private usersRepository: Repository<User>,
   ) {}
   getAll(): Promise<User[]> {
-    return this.usersRepository.find(); //SELECT * from user
+    return this.usersRepository.find({ relations: ['pets'] }); //SELECT * from user JOIN pets
   }
   getOneById(id: number): Promise<User> {
     try {
